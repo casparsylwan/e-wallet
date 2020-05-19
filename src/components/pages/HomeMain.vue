@@ -7,6 +7,7 @@
         <Evil></Evil>
         <Ninja></Ninja>
         <ChipLight></ChipLight>
+        <CardStack class="card"></CardStack>
     </div>   
 </template>
 <script>
@@ -16,19 +17,25 @@ import BlockChain from '../imgSVG/VendorBlockchain';
 import Evil from '../imgSVG/VendorEvil';
 import Ninja from '../imgSVG/VendorNinja';
 import ChipLight from '../imgSVG/ChipLight';
+import CardStack from '../layout/CardStack';
 
 export default {
+
      components:{
         ChipDark,
         ChipLight,
         Bitcoin,
         BlockChain,
         Evil,
-        Ninja
+        Ninja,
+        CardStack
     }
     
 }
 </script>
 <style lang="scss" scoped>
+    .card{
+        margin: auto;
+    }
 
 </style>
