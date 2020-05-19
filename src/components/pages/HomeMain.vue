@@ -35,7 +35,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     .card{
-        margin: auto;
+        margin: 0 auto;
     }
 
 </style>
