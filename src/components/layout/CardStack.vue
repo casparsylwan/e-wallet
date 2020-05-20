@@ -1,5 +1,6 @@
 <template>
     <div class="cardStack"> 
+        <Top></Top>
         <Card class="active-card" v-bind:card="cards[ide]"></Card>
         <div class="stack">
             <div class="payload" v-bind:key="card.id" v-for="card in cards" v-on:click="showCard(card.id-1)">
@@ -10,19 +11,20 @@
 </template>
 <script>
 import Card from '../layout/Card';
+import Top from '../layout/Top';
 
 export default {
     name:"CardStack",
 
      components:{
-         Card
+         Card,
+         Top
      },
      data(){
          return {
             cards:[{
                 id:1,
-                type:'bit',
-                textcolor:'hold'
+                type:'bit'
                 }
                 ,
                 {
@@ -56,17 +58,16 @@ export default {
     .cardStack{
         padding: 1rem;
         width: fit-content;
-    
+    }
+
+    .active-card{
+        margin: 0 auto;
     }
 
     .stack{
         width: 100%;
         display: flex;
         flex-direction: column;
-    }
-
-    .active-card{
-        margin: 1rem;
     }
 
     .payload{
