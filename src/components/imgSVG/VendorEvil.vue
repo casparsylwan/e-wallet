@@ -10,7 +10,7 @@ export default {
 </script>
 <style lang="scss" scoped>
     svg path{
-        fill:black;
+        fill: #fff;
     }
 
 </style>

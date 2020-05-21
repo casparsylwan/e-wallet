@@ -1,10 +1,15 @@
 <template>
-    <h1>{{ scen }}</h1>
-    
+    <h1>{{ heading() }}</h1>   
 </template>
 <script>
 export default {
     name:"Top",
+    methods:{
+        heading : function(){
+            return 'E-WALLETT';
+        }
+
+    },
      data(){
          return {
              scen:'E-WALLET'

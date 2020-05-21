@@ -54,8 +54,6 @@
         background-color: #aff;
         border-radius: 1rem;
 
-        border-top: solid 1px black;
-
         -webkit-box-shadow: 26px 25px 59px -46px rgba(0,0,0,0.75);
         -moz-box-shadow: 26px 25px 59px -46px rgba(0,0,0,0.75);
         box-shadow: 26px 25px 59px -46px rgba(0,0,0,0.75);
@@ -70,9 +68,6 @@
         "text text text text"
         "hold hold hold valid";
         
-    }
-
-    .card{
     
         &.ninja{
         background-color: #111;
@@ -83,7 +78,13 @@
         }
 
         &.evil{
-            background-color: #aa005f;
+            background-color: #ff005f;
+
+            -webkit-box-shadow: 26px 25px 59px -46px rgba(190,194,203,0.75);
+            -moz-box-shadow: 26px 25px 59px -46px rgba(190,194,203, 0.75);
+            box-shadow: 26px 25px 59px -46px rgba(190,194,203,0.75);
+
+        text-shadow: 1px 1px 0px rgba(190,194,203,0.3);
         }
 
         &.block{
@@ -115,33 +116,42 @@
         p{
            font-size: 2rem; 
            letter-spacing: 0.1rem;
-           color: #000;
-           
+           color: #000;       
         }
-    }
 
-    .card-text.ninja{
-        p{
+        &.ninja p{
             color: #aaa;
         }
+
+       
     }
+
 
   .hold{
       grid-area: hold;
-    //  color:#000;
+      color:#000;
+
+      &.block, &.evil{
+          color:#333;
+      }
+      
     .name{
         display: flex;
         justify-content: flex-start;
         font-size: 1.5rem;
         font-weight: bold;
 
-            span:nth-child(2){
-                margin-left: 1rem;                        
-            }
-    }
+        &.ninja{
+            color:#999;
+        }
 
-    .hold.ninja{
-        color:#fff;
+        &.bit, &.block, &.evil{
+            color: #000;
+        }
+   
+        span:nth-child(2){
+            margin-left: 1rem;                        
+        }
     }
 
 
@@ -156,16 +166,28 @@
         font-size: 1.5rem;
         font-weight: bold;
 
-            span:nth-child(2){
-                margin-left: 1rem;                        
-            }
+        &.ninja{
+            color:#999;
+        }
+
+        &.bit, &.block, &.evil{
+            color:#000;
+        }
+   
+        span:nth-child(2){
+             margin-left: 1rem;                        
+        }
       }
   }
 
-  .name.ninja, h3{
-       color:#999;
+  h3{
+        color:#999;
     
-  }
+    }
+
+  .bit h3, .block h3, .evil h3{
+        color:#000;
+    }
    
 
 </style>

@@ -1,25 +1,34 @@
 <template>
-    <h1>{{ scen }}</h1>
-    
+    <div class="add-card">
+        <Top></Top>
+        <Card v-bind:card="cards[0]" class="card" ></Card>
+        <CardForm></CardForm>
+        
+    </div>
 </template>
 <script>
+import Top from '../layout/Top';
+import Card from '../layout/Card';
+import CardForm from '../layout/CardForm';
+
 export default {
-    name:"Top",
-     data(){
-         return {
-             scen:'E-WALLET'
-         }
-     }
+    name:"AddCard",
+    components: {
+        Top,
+        Card,
+        CardForm
+  },
+  props : ["cards"]
+
+     
 }
 </script>
 <style lang="scss" scoped>
-    h1{
-        text-align: center;
-        font-size: 3rem;
-        font-weight: bolder;
-        margin: 2rem;
-        font-family: Arial, Helvetica, sans-serif;
+
+    .card{
+        margin: 0 auto;
     }
+  
 
 
 </style>

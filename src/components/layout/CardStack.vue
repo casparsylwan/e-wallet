@@ -1,9 +1,11 @@
 <template>
     <div class="cardStack"> 
         <Top></Top>
+        
         <Card class="active-card" v-bind:card="cards[ide]"></Card>
+        
         <div class="stack">
-            <div class="payload" v-bind:key="card.id" v-for="card in cards" v-on:click="showCard(card.id-1)">
+            <div class="payload" v-bind:key="card.id" v-for="card in cards" v-on:click="showCard(card.id)">
                 <Card v-bind:card="card" class="pay"></Card>
             </div>
         </div>
@@ -22,25 +24,6 @@ export default {
      },
      data(){
          return {
-            cards:[{
-                id:1,
-                type:'bit'
-                }
-                ,
-                {
-                id:2,
-                type:'block'
-                }
-                ,
-                {
-                id:3,
-                type:'evil'
-                }
-                ,
-                {
-                id:4,
-                type:'ninja'
-                }],
                 ide:0
          }
      },
@@ -48,9 +31,12 @@ export default {
         showCard(id){
 
             this.ide = id;
+            this.ide = this.cards.findIndex(card => card.id === id);
             return this.cards[this.ide];
         }
     }
+    ,
+     props: ["cards"]
 }
 </script>
 <style lang="scss" scoped>
