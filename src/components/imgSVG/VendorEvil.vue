@@ -6,6 +6,7 @@
 <script>
 export default {
      name:"Evil"
+     
 }
 </script>
 <style lang="scss" scoped>

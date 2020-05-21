@@ -25,16 +25,22 @@
                         v-bind:key="option.id" 
                         v-for="option in options" 
                         class="opt" :class="open">
-                    <Bitcoin
-                             v-if="option.id==1" 
-                             class="coin">
-                             </Bitcoin>
-                    <BlockChain v-if="option.id==2" class="coin"></BlockChain>
-                    <Evil v-if="option.id==3" class="coin"></Evil>
-                    <Ninja v-if="option.id==4" class="coin"></Ninja>
-                </div>
-            </div>            
-        </div>           
+                        <div class="circle-around" :class="option.type">
+                            <Bitcoin
+                                    v-if="option.id==1" 
+                                    class="coin">
+                                    </Bitcoin>
+                            <BlockChain v-if="option.id==2" class="coin"></BlockChain>
+                            <Evil v-if="option.id==3" class="coin"></Evil>
+                            <Ninja v-if="option.id==4" class="coin"></Ninja>
+                        </div>
+                            <h2>
+                              {{ option.name }}  
+                            </h2>
+                        
+                    </div>    
+                </div>            
+             </div>           
     </div>   
 </template>
 <script>
@@ -68,10 +74,26 @@ export default {
          return {
              open:'close',
              options:[
-                 {id:1},
-                 {id:2},
-                 {id:3},
-                 {id:4}
+                 {
+                     id:1,
+                    type:'bit',
+                    name:'BITCOIN INC'
+                    },
+                 {
+                     id:2,
+                     type:'block',
+                     name:'BLOCK CHAIN INC'
+                     },
+                 {
+                     id:3,
+                     type:'evil',
+                     name:'EVIL CORP'
+                },
+                 {
+                     id:4,
+                    type:'ninja',
+                    name:'NINJA BANK'
+                    }
                  ]                
                 }
             }
@@ -163,17 +185,54 @@ export default {
 
             display: flex;
             align-items: center;
-            border: solid black 1px;
+            
 
-            background-color: #555;
+            
+
+            .circle-around{
+                border-radius: 100%;
+                background-color: black;
+                height: 4rem;
+                width: 4rem;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &.evil{
+                    background-color: #ff005f;
+
+                }
+
+                &.block{
+                    background-color: #9988dd;
+                }
+
+                &.bit{
+                    background-color: #f4af37;
+                }
+
+                &.ninja{
+                    background-color: #111;
+
+                }
+            }
+
+            h2{
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+                font-size: 2rem;
+                margin-left: 2rem;
+               
+            }
 
             &.open{
                 opacity: 1;
 
                 @for $i from 1 through 6 {
                     &:nth-child(#{$i}n){
-                    top:$i * 4rem;
-                    bottom:- $i * 4rem;
+                    top:$i * 5rem;
+                    bottom:- $i * 5rem;
                     transition: all 0.5s ease-in $i * 0.1s;
                 }
 
