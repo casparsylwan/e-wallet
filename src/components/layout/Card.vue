@@ -6,15 +6,29 @@
         <Evil v-if="card.id==3" class="coin"></Evil>
         <Ninja v-if="card.id==4" class="coin"></Ninja>
         <div class="card-text" :class="card.type">
-            <p>{{ giveDigits() }}</p>            
-            <p>{{ giveDigits() }}</p>
-            <p>{{ giveDigits() }}</p>
-            <p>{{ giveDigits() }}</p>              
+            <p>xxxx</p> 
+            <!--
+                {{ giveDigits(0,4) }}
+                -->
+            <p>xxxx</p>
+<!--
+{{ giveDigits(4,8) }}
+    -->
+
+            <p>xxxx</p>
+<!--
+{{ giveDigits(8,12) }}
+    -->
+
+            <p>xxxx</p>  
+<!--            
+{{ giveDigits(12, 16) }}
+-->
         </div>
         <div class="valid" :class="card.type">
             <h3>VALID THRU</h3>
             <div class="name" :class="card.type">
-                <span>10/</span><span>12</span>
+                <span>{{ giveValidDate(0, 2) }}/{{ giveValidDate( 2, 5) }} </span>
             </div>
         </div>
         <div class="hold" :class="card.type">
@@ -46,19 +60,41 @@
      data(){
          
          return {
-
+             digits:['x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x'],
+             validDate:['M','M','Y','Y']
 
          }
      },
     methods : {
-        giveDigits(){
-            let digits = ['a','b','c','d'];
-            for(let i=0; i<4; i++){
-                digits[i] = 'x'
-            }
-                console.log(digits)
-            return digits.join('')
+        giveDigits(start, end){
+            
+            if(this.card.cardNumber){
+                let len =  this.card.cardNumber.length;
+                this.digits = ['x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x'];
+                if(len>16) len = 16;
+                for(let i=0; i<len; i++){
+                    
+                    this.digits[i] = this.card.cardNumber[i];
 
+                }
+            }
+            return this.digits.slice(start, end).join('');
+
+        },
+
+        giveValidDate(start, end){
+
+            if(this.card.valid){
+
+                this.validDate = ['M','M','Y','Y'];
+                let len = this.card.valid.length
+                if(len>4) len = 4;
+                for(let i=0; i<len; i++){
+                    this.validDate[i] = this.card.valid[i];
+                }
+            }
+
+            return this.validDate.slice(start, end).join('');
         }
     }
     

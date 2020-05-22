@@ -1,7 +1,13 @@
 <template>
   <div class="home">
-    <HomeMain v-bind:cards="cards" v-if="page===2"></HomeMain>
-    <AddCard  v-bind:cards="cards" v-if="page===2"></AddCard>  
+    <HomeMain 
+            v-bind:cards="cards" 
+            v-if="page===1"
+            v-bind:page="page"></HomeMain>
+    <AddCard  
+            v-bind:cards="cards" 
+            v-if="page===2"
+            v-bind:page="page"></AddCard>  
   </div>
 </template>
 

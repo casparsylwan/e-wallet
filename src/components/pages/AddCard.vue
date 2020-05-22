@@ -1,14 +1,15 @@
 <template>
     <div class="add-card">
-        <Top></Top>
+        <Top v-bind:page="page"></Top>
         <Card 
             v-bind:card="card" 
             class="card" ></Card>
             {{ card }}
         <CardForm
             v-bind:options="options"
-            v-bind:card="card"
-            v-on:up-card="upDateCard(card)"></CardForm>
+            @up-card="upDateCard"
+            @update-card="upDateCard">
+        </CardForm>
     </div>
 </template>
 <script>
@@ -20,41 +21,56 @@ export default {
     name:"AddCard",
     components: {
         Top,
-        Card,
-        CardForm
+        CardForm,
+        Card
   },
-  props : ["cards"],
+  props : ["cards", "page"],
   data () {
     return {
             
              card:{
                     id:1,
                     type:'bit',
-                    name:'BITCOIN INC'
+                    name:'BITCOIN INC',
+                    cardNumber:'',
+                    valid:'',
+                    customerName:''
              },
              options:[
                  {
                     id:1,
                     type:'bit',
-                    name:'BITCOIN INC'
+                    name:'BITCOIN INC',
+                    cardNumber:'',
+                    valid:'',
+                    customerName:''
                     
                     },
                  {
                      id:2,
                      type:'block',
-                     name:'BLOCK CHAIN INC'
+                     name:'BLOCK CHAIN INC',
+                    cardNumber:'',
+                    valid:'',
+                    customerName:''
                     
                      },
                  {
                      id:3,
                      type:'evil',
-                     name:'EVIL CORP'
+                     name:'EVIL CORP',
+                    cardNumber:'',
+                    valid:'',
+                    customerName:''
                     
                 },
                  {
                     id:4,
                     type:'ninja',
-                    name:'NINJA BANK'
+                    name:'NINJA BANK',
+                    cardNumber:'',
+                    valid:'',
+                    customerName:''
                     
                     }
                  ]      
@@ -63,11 +79,16 @@ export default {
   },
      methods:{
          upDateCard(card){
-             this.card = card;
+             
+             this.card.id = card.id;
+             this.card.cardNumber = card.cardNumber;
+             this.card.name = card.name;
+             this.card.type = card.type;
+             this.card.valid = card.valid;
+             console.log(card.cardNumber + "n" + this.card.cardNumber + "cjs1234");
+
 
          }
-     
-
      } 
 }
 </script>
@@ -77,6 +98,4 @@ export default {
         margin: 0 auto;
     }
   
-
-
 </style>

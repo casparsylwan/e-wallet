@@ -1,21 +1,35 @@
 <template>
+<!--
+
+    -->
     <div 
         class="card-form" 
-        @click="$emit('up-card', card)">
-        <div class="input-box number big">
+        @keydown="$emit('up-card', card)"
+        v-on:keydown="update()"        
+        >
+        <!--
+            v-on:change="cardChoice(opt)"
+            -->
+        <div class="input-box number big" >
             <label for="">card number</label>
-            <input v-model="cardNumber" type="text" v-on:change="cardChoice(opt)">
+            <input v-model="cardNumber" type="text" >
         </div>
-        <div class="input-box name big">
+<!--
+v-on:change="cardChoice(opt)"
+-->
+        <div class="input-box name big" >
             <label >name</label>
-            <input v-model="name" type="text" v-on:change="cardChoice(opt)">
+            <input v-model="name" type="text" >
         </div>
+<!--
+v-on:change="cardChoice(opt)"
+-->
         <div class="small">
-            <div class="input-box valid sm">
+            <div class="input-box valid sm" >
                 <label >VALID THRU</label>
-                <input v-model="valid" type="text" v-on:change="cardChoice(opt)">
+                <input v-model="valid" type="text" >
             </div>
-            <div class="input-box ccv sm" v-on:change="cardChoice(opt)" >
+            <div class="input-box ccv sm" v-on:change="$emit('up-card', this.card)" >
                 <label>CCV</label>
                 <input v-model="ccv" type="text" >
             </div>
@@ -30,9 +44,9 @@
                         class="opt" :class="open">
                         <div class="circle-around" :class="option.type">
                             <Bitcoin
-                                    v-if="option.id==1" 
-                                    class="coin">
-                                    </Bitcoin>
+                                v-if="option.id==1" 
+                                class="coin">
+                            </Bitcoin>
                             <BlockChain v-if="option.id==2" class="coin"></BlockChain>
                             <Evil v-if="option.id==3" class="coin"></Evil>
                             <Ninja v-if="option.id==4" class="coin"></Ninja>
@@ -40,8 +54,11 @@
                             <h2>
                               {{ option.name }}  
                             </h2>                       
-                    </div>    
-                </div>            
+                    </div>  
+                </div> 
+                <div class="add-card" :class="open" v-on:click="addCard">
+                    <h2>ADD CARD</h2>
+                </div>         
              </div>
              {{name}}           
     </div>   
@@ -60,7 +77,7 @@ export default {
          Evil,
          Ninja
     },
-    props : [ 'options', 'card'],
+    props : [ 'options'],
     methods:{
         showOpt(){
 
@@ -72,18 +89,13 @@ export default {
 
             
              },
-        addCustomer(){
+        addCard(){
 
-            return {
-                customerName:this.name,
-                cardNumber:this.cardNumber,
-                ccv:this.ccv,
-                valid:this.valid,
-                
-            }
+           console.log("hej på dig");
         },
         cardChoice(option){
             //
+//            console.log(option);
            if(this.open==='open' || option.open=='open'){
                 this.card.id = option.id;
                 this.card.name = option.name;
@@ -93,18 +105,18 @@ export default {
                 this.card.cardNumber = this.cardNumber;
                 this.card.valid = this.valid;
                 this.opt= option;
+                console.log(this.opt)
                 console.log(this.card)
+                this.$emit('up-card', this.card)
            }          
         },
-        changName(name){
-            this.name = name;
-            this.card.customerName = this.name;
-            console.log(this.name);
-        },
-        changCardnumber(cardNumber){
-            this.cardNumber = cardNumber;
-            this.card.cardNumber = this.cardNumber;
 
+        update(){
+ //           console.log(this.cardNumber + "acevwev");
+            this.opt = this.card;
+            this.cardChoice(this.opt)
+            this.$emit('up-card', this.card);
+            this.$emit('update-card', this.card)
         }
     },
      data(){
@@ -115,13 +127,15 @@ export default {
              cardNumber:'',
              ccv:'',
              valid:'',
-              opt:{
+            card:{
                     id:1,
                     type:'bit',
                     name:'BITCOIN INC',
-                    open:'open'
-                }
-
+                    open:'open',
+                    cardNumber:'',
+                    valid:'',
+                    customerName:''
+            }
                              
                 }
             }
@@ -187,7 +201,7 @@ export default {
         height: 4rem;
         width: 100%;
 
-        margin-bottom: 20rem;
+        margin-bottom: 2rem;
 
         border-radius:0.5rem;
         border: 1px #777 solid;
@@ -216,9 +230,6 @@ export default {
             display: flex;
             align-items: center;
             
-
-            
-
             .circle-around{
                 border-radius: 100%;
                 background-color: black;
@@ -286,6 +297,36 @@ export default {
             }
             
         }
+
+    }
+
+    .add-card{
+
+        position: relative;
+        
+        height: 4rem;
+        width: 100%;
+
+        margin-bottom: 2rem;
+
+        border-radius:0.5rem;
+        transition: background-color 1s ease-in;
+
+        &.open{
+            background-color: transparent;
+            z-index: -1;
+        }
+
+        &.close{
+            background-color: #000;
+            z-index: 4;
+        }
+
+        color:#fff;  
+
+        display: flex;
+        align-items: center;
+        justify-content: center;     
 
     }
            

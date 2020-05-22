@@ -4,9 +4,17 @@
 <script>
 export default {
     name:"Top",
+    props:['page'],
     methods:{
         heading : function(){
-            return 'E-WALLETT';
+
+            if(this.page==1){
+                return 'E-WALLETT';
+            }else if(this.page==2){
+                return 'ADD A NEW BANK CARD';
+            }
+
+            
         }
 
     },
