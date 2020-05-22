@@ -8,8 +8,10 @@
         <CardForm
             v-bind:options="options"
             @up-card="upDateCard"
-            @update-card="upDateCard">
+            @update-card="upDateCard"
+            v-on:add-the-card="send">
         </CardForm>
+        
     </div>
 </template>
 <script>
@@ -86,9 +88,13 @@ export default {
              this.card.type = card.type;
              this.card.valid = card.valid;
              this.card.customerName = card.customerName;
-             console.log(card.cardNumber + "n" + this.card.cardNumber + "cjs1234");
+             
 
 
+         },
+         send(id){
+             console.log(id);
+             this.$emit('add-the-card', this.card);
          }
      } 
 }

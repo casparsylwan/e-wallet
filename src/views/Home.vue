@@ -7,7 +7,8 @@
     <AddCard  
             v-bind:cards="cards" 
             v-if="page===2"
-            v-bind:page="page"></AddCard>  
+            v-bind:page="page"
+            v-on:add-the-card="addCard"></AddCard>  
   </div>
 </template>
 
@@ -22,31 +23,51 @@ export default {
     HomeMain,
     AddCard
   },
+   methods:{
+     addCard : function(card){
+       
+       console.log("ja ja hej på dig!!!" + this.cards.length)
+       let max = 0;
+       if(this.cards.length!=0){
+          max = this.cards.reduce(function(prev, current) {
+                            return (prev.uniqId > current.uniqId) ? prev : current
+                            });
+       }
+       
+                            card.uniqId= max + 1; 
+     this.cards.push(card);  
+       this.page =1;
+       
+     }
+   },
   data () {
     return {
-      cards:[{
-                id:1,
-                type:'bit',
-                name:'BITCOIN INC'
-                }
-                ,
-                {
-                id:2,
-                type:'block',
-                name:'BLOCK CHAIN INC'
-                }
-                ,
-                {
-                id:3,
-                type:'evil',
-                name:'EVIL CORP'
-                }
-                ,
-                {
-                id:4,
-                type:'ninja',
-                name:'NINJA BANK'
-                }],
+      cards:[
+        //{
+                // id:1,
+                // type:'bit',
+                // name:'BITCOIN INC',
+                // uniqId:1
+                // }
+                // ,
+                // {
+                // id:2,
+                // type:'block',
+                // name:'BLOCK CHAIN INC'
+                // }
+                // ,
+                // {
+                // id:3,
+                // type:'evil',
+                // name:'EVIL CORP'
+                // }
+                // ,
+                // {
+                // id:4,
+                // type:'ninja',
+                // name:'NINJA BANK'
+//                }
+                ],
                 page:2
 
         }

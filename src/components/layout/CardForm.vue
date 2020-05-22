@@ -56,7 +56,7 @@ v-on:change="cardChoice(opt)"
                             </h2>                       
                     </div>  
                 </div> 
-                <div class="add-card" :class="open" v-on:click="addCard">
+                <div class="add-card" :class="open" @click="addCard()">
                     <h2>ADD CARD</h2>
                 </div>         
              </div>          
@@ -86,10 +86,6 @@ export default {
                         this.open ='close';
                      }           
              },
-        addCard(){
-
-           console.log("hej på dig");
-        },
         cardChoice(option){
 
            if(this.open==='open' || option.open=='open'){
@@ -101,18 +97,20 @@ export default {
                 this.card.cardNumber = this.cardNumber;
                 this.card.valid = this.valid;
                 this.opt= option;
-                console.log(this.opt)
-                console.log(this.card)
                 this.$emit('up-card', this.card)
            }          
         },
 
         update(){
  //           console.log(this.cardNumber + "acevwev");
-            this.opt = this.card;
-            this.cardChoice(this.opt)
+            
+            this.cardChoice(this.card)
             this.$emit('up-card', this.card);
             this.$emit('update-card', this.card)
+        },
+        addCard(){
+            console.log("hej!!!!!!!!!!!!!" + this.card.id);
+            this.$emit('add-the-card', this.card.id)
         }
     },
      data(){

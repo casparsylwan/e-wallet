@@ -5,7 +5,7 @@
         <Card class="active-card" v-bind:card="cards[ide]"></Card>
         
         <div class="stack">
-            <div class="payload" v-bind:key="card.id" v-for="card in cards" v-on:click="showCard(card.id)">
+            <div class="payload" v-bind:key="card.uniqId" v-for="card in cards" v-on:click="showCard(card.id)">
                 <Card v-bind:card="card" class="pay"></Card>
             </div>
         </div>
