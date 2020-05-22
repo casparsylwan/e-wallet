@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HomeMain v-bind:cards="cards" v-if="page===1"></HomeMain>
+    <HomeMain v-bind:cards="cards" v-if="page===2"></HomeMain>
     <AddCard  v-bind:cards="cards" v-if="page===2"></AddCard>  
   </div>
 </template>
@@ -20,22 +20,26 @@ export default {
     return {
       cards:[{
                 id:1,
-                type:'bit'
+                type:'bit',
+                name:'BITCOIN INC'
                 }
                 ,
                 {
                 id:2,
-                type:'block'
+                type:'block',
+                name:'BLOCK CHAIN INC'
                 }
                 ,
                 {
                 id:3,
-                type:'evil'
+                type:'evil',
+                name:'EVIL CORP'
                 }
                 ,
                 {
                 id:4,
-                type:'ninja'
+                type:'ninja',
+                name:'NINJA BANK'
                 }],
                 page:2
 

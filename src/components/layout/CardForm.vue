@@ -1,27 +1,30 @@
 <template>
-    <div class="card-form">
+    <div 
+        class="card-form" 
+        @click="$emit('up-card', card)">
         <div class="input-box number big">
             <label for="">card number</label>
-            <input type="number">
+            <input v-model="cardNumber" type="text" v-on:change="cardChoice(opt)">
         </div>
         <div class="input-box name big">
-            <label for="">name</label>
-            <input type="text">
+            <label >name</label>
+            <input v-model="name" type="text" v-on:change="cardChoice(opt)">
         </div>
         <div class="small">
             <div class="input-box valid sm">
-                <label for="">VALID THRU</label>
-                <input type="text">
+                <label >VALID THRU</label>
+                <input v-model="valid" type="text" v-on:change="cardChoice(opt)">
             </div>
-            <div class="input-box ccv sm">
-                <label for="">CCV</label>
-                <input type="text">
+            <div class="input-box ccv sm" v-on:change="cardChoice(opt)" >
+                <label>CCV</label>
+                <input v-model="ccv" type="text" >
             </div>
         </div>
         <div class="input-box number big">
             <label for="">Vendor</label>
             <div class="select" v-on:click="showOpt()">
                 <div 
+                        v-on:click="cardChoice(option)"
                         v-bind:key="option.id" 
                         v-for="option in options" 
                         class="opt" :class="open">
@@ -36,11 +39,11 @@
                         </div>
                             <h2>
                               {{ option.name }}  
-                            </h2>
-                        
+                            </h2>                       
                     </div>    
                 </div>            
-             </div>           
+             </div>
+             {{name}}           
     </div>   
 </template>
 <script>
@@ -57,6 +60,7 @@ export default {
          Evil,
          Ninja
     },
+    props : [ 'options', 'card'],
     methods:{
         showOpt(){
 
@@ -67,34 +71,58 @@ export default {
                      }
 
             
-             }
+             },
+        addCustomer(){
+
+            return {
+                customerName:this.name,
+                cardNumber:this.cardNumber,
+                ccv:this.ccv,
+                valid:this.valid,
+                
+            }
+        },
+        cardChoice(option){
+            //
+           if(this.open==='open' || option.open=='open'){
+                this.card.id = option.id;
+                this.card.name = option.name;
+                this.card.type = option.type; 
+                this.card.customerName = this.name;
+                this.card.ccv= this.ccv;
+                this.card.cardNumber = this.cardNumber;
+                this.card.valid = this.valid;
+                this.opt= option;
+                console.log(this.card)
+           }          
+        },
+        changName(name){
+            this.name = name;
+            this.card.customerName = this.name;
+            console.log(this.name);
+        },
+        changCardnumber(cardNumber){
+            this.cardNumber = cardNumber;
+            this.card.cardNumber = this.cardNumber;
+
+        }
     },
      data(){
          
          return {
              open:'close',
-             options:[
-                 {
-                     id:1,
+             name:'',
+             cardNumber:'',
+             ccv:'',
+             valid:'',
+              opt:{
+                    id:1,
                     type:'bit',
-                    name:'BITCOIN INC'
-                    },
-                 {
-                     id:2,
-                     type:'block',
-                     name:'BLOCK CHAIN INC'
-                     },
-                 {
-                     id:3,
-                     type:'evil',
-                     name:'EVIL CORP'
-                },
-                 {
-                     id:4,
-                    type:'ninja',
-                    name:'NINJA BANK'
-                    }
-                 ]                
+                    name:'BITCOIN INC',
+                    open:'open'
+                }
+
+                             
                 }
             }
             
@@ -159,7 +187,7 @@ export default {
         height: 4rem;
         width: 100%;
 
-        margin-bottom: 60rem;
+        margin-bottom: 20rem;
 
         border-radius:0.5rem;
         border: 1px #777 solid;
@@ -176,6 +204,8 @@ export default {
 
             transform: rotate(180deg);
         }
+
+  
 
         .opt{
 
@@ -228,6 +258,7 @@ export default {
 
             &.open{
                 opacity: 1;
+                z-index: 3;
 
                 @for $i from 1 through 6 {
                     &:nth-child(#{$i}n){
@@ -244,6 +275,7 @@ export default {
                 opacity: 0;
                 top:0;
                 bottom:0;
+                z-index: -1;
                 @for $i from 1 through 6 {
                     &:nth-child(-#{$i}n + 6){
                     transition: all 0.5s ease-in $i * 0.1s;

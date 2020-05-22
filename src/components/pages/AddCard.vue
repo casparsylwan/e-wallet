@@ -1,9 +1,14 @@
 <template>
     <div class="add-card">
         <Top></Top>
-        <Card v-bind:card="cards[0]" class="card" ></Card>
-        <CardForm></CardForm>
-        
+        <Card 
+            v-bind:card="card" 
+            class="card" ></Card>
+            {{ card }}
+        <CardForm
+            v-bind:options="options"
+            v-bind:card="card"
+            v-on:up-card="upDateCard(card)"></CardForm>
     </div>
 </template>
 <script>
@@ -18,9 +23,52 @@ export default {
         Card,
         CardForm
   },
-  props : ["cards"]
+  props : ["cards"],
+  data () {
+    return {
+            
+             card:{
+                    id:1,
+                    type:'bit',
+                    name:'BITCOIN INC'
+             },
+             options:[
+                 {
+                    id:1,
+                    type:'bit',
+                    name:'BITCOIN INC'
+                    
+                    },
+                 {
+                     id:2,
+                     type:'block',
+                     name:'BLOCK CHAIN INC'
+                    
+                     },
+                 {
+                     id:3,
+                     type:'evil',
+                     name:'EVIL CORP'
+                    
+                },
+                 {
+                    id:4,
+                    type:'ninja',
+                    name:'NINJA BANK'
+                    
+                    }
+                 ]      
+    }
+   
+  },
+     methods:{
+         upDateCard(card){
+             this.card = card;
 
+         }
      
+
+     } 
 }
 </script>
 <style lang="scss" scoped>

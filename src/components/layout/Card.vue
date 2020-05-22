@@ -1,15 +1,15 @@
 <template>
-    <div class="card" :class="card.type">
+    <div class="card" :class="card.type" v-if="card.id!=null">
         <ChipDark class="chip" v-bind:type="card.type"></ChipDark>
         <Bitcoin v-if="card.id==1" class="coin"></Bitcoin>
         <BlockChain v-if="card.id==2" class="coin"></BlockChain>
         <Evil v-if="card.id==3" class="coin"></Evil>
         <Ninja v-if="card.id==4" class="coin"></Ninja>
         <div class="card-text" :class="card.type">
-            <p>xxxx</p>
-            <p>xxxx</p>
-            <p>xxxx</p>
-            <p>xxxx</p>              
+            <p>{{ giveDigits() }}</p>            
+            <p>{{ giveDigits() }}</p>
+            <p>{{ giveDigits() }}</p>
+            <p>{{ giveDigits() }}</p>              
         </div>
         <div class="valid" :class="card.type">
             <h3>VALID THRU</h3>
@@ -42,7 +42,26 @@
          Evil,
          Ninja
     },
-    props: ["card"]
+    props: ["card"],
+     data(){
+         
+         return {
+
+
+         }
+     },
+    methods : {
+        giveDigits(){
+            let digits = ['a','b','c','d'];
+            for(let i=0; i<4; i++){
+                digits[i] = 'x'
+            }
+                console.log(digits)
+            return digits.join('')
+
+        }
+    }
+    
         }
 </script>
 <style lang="scss" scoped>
