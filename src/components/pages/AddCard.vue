@@ -90,7 +90,7 @@ export default {
 
 
          },
-         send(id){
+         send(){
              
              this.$emit('add-the-card', this.card);
          }

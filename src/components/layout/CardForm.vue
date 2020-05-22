@@ -14,16 +14,12 @@
             <label for="">card number</label>
             <input v-model="cardNumber" type="text" >
         </div>
-<!--
-v-on:change="cardChoice(opt)"
--->
+
         <div class="input-box name big" >
             <label >name</label>
             <input v-model="name" type="text" >
         </div>
-<!--
-v-on:change="cardChoice(opt)"
--->
+
         <div class="small">
             <div class="input-box valid sm" >
                 <label >VALID THRU</label>
