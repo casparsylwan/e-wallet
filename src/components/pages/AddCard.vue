@@ -85,6 +85,7 @@ export default {
              this.card.name = card.name;
              this.card.type = card.type;
              this.card.valid = card.valid;
+             this.card.customerName = card.customerName;
              console.log(card.cardNumber + "n" + this.card.cardNumber + "cjs1234");
 
 

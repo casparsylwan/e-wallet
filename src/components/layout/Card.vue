@@ -6,21 +6,21 @@
         <Evil v-if="card.id==3" class="coin"></Evil>
         <Ninja v-if="card.id==4" class="coin"></Ninja>
         <div class="card-text" :class="card.type">
-            <p>xxxx</p> 
+            <p>{{ giveDigits(0,4) }}</p> 
             <!--
-                {{ giveDigits(0,4) }}
+{{ giveDigits(0,4) }}
                 -->
-            <p>xxxx</p>
+            <p>{{ giveDigits(4,8) }}</p>
 <!--
 {{ giveDigits(4,8) }}
     -->
 
-            <p>xxxx</p>
+            <p>{{ giveDigits(8,12) }}</p>
 <!--
 {{ giveDigits(8,12) }}
     -->
 
-            <p>xxxx</p>  
+            <p>{{ giveDigits(12, 16) }}</p>  
 <!--            
 {{ giveDigits(12, 16) }}
 -->
@@ -34,7 +34,7 @@
         <div class="hold" :class="card.type">
             <h3>cardholder name</h3>
             <div class="name" :class="card.type">
-                <span>first</span><span>second </span>
+                <span>{{ giveName() }}</span>
             </div>
         </div>
     </div>
@@ -67,34 +67,44 @@
      },
     methods : {
         giveDigits(start, end){
-            
+            let digitsTemp = ['x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x'];
             if(this.card.cardNumber){
                 let len =  this.card.cardNumber.length;
-                this.digits = ['x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x'];
+                
                 if(len>16) len = 16;
                 for(let i=0; i<len; i++){
                     
-                    this.digits[i] = this.card.cardNumber[i];
+                    digitsTemp[i] = this.card.cardNumber[i];
 
                 }
             }
-            return this.digits.slice(start, end).join('');
+            return digitsTemp.slice(start, end).join('');
 
         },
 
         giveValidDate(start, end){
 
+            let validDateTemp = ['M','M','Y','Y'];
+
             if(this.card.valid){
 
-                this.validDate = ['M','M','Y','Y'];
+                
                 let len = this.card.valid.length
                 if(len>4) len = 4;
                 for(let i=0; i<len; i++){
-                    this.validDate[i] = this.card.valid[i];
+                    validDateTemp[i] = this.card.valid[i];
                 }
             }
 
-            return this.validDate.slice(start, end).join('');
+            return validDateTemp.slice(start, end).join('');
+        },
+
+        giveName(){
+            
+            if(this.card.customerName){
+                return this.card.customerName;
+            }
+            return "FIRSTNAME LASTNAME";
         }
     }
     

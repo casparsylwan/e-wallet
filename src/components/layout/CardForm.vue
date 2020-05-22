@@ -4,8 +4,8 @@
     -->
     <div 
         class="card-form" 
-        @keydown="$emit('up-card', card)"
-        v-on:keydown="update()"        
+        @keyup="$emit('up-card', card)"
+        v-on:keyup="update()"        
         >
         <!--
             v-on:change="cardChoice(opt)"
@@ -59,8 +59,7 @@ v-on:change="cardChoice(opt)"
                 <div class="add-card" :class="open" v-on:click="addCard">
                     <h2>ADD CARD</h2>
                 </div>         
-             </div>
-             {{name}}           
+             </div>          
     </div>   
 </template>
 <script>
@@ -85,17 +84,14 @@ export default {
                          this.open ='open';
                      }else{
                         this.open ='close';
-                     }
-
-            
+                     }           
              },
         addCard(){
 
            console.log("hej på dig");
         },
         cardChoice(option){
-            //
-//            console.log(option);
+
            if(this.open==='open' || option.open=='open'){
                 this.card.id = option.id;
                 this.card.name = option.name;
