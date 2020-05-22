@@ -4,14 +4,12 @@
         <Card 
             v-bind:card="card" 
             class="card" ></Card>
-            {{ card }}
         <CardForm
             v-bind:options="options"
             @up-card="upDateCard"
             @update-card="upDateCard"
             v-on:add-the-card="send">
-        </CardForm>
-        
+        </CardForm>        
     </div>
 </template>
 <script>
@@ -93,7 +91,7 @@ export default {
 
          },
          send(id){
-             console.log(id);
+             
              this.$emit('add-the-card', this.card);
          }
      } 

@@ -102,14 +102,14 @@ export default {
         },
 
         update(){
- //           console.log(this.cardNumber + "acevwev");
+ 
             
             this.cardChoice(this.card)
             this.$emit('up-card', this.card);
             this.$emit('update-card', this.card)
         },
         addCard(){
-            console.log("hej!!!!!!!!!!!!!" + this.card.id);
+            
             this.$emit('add-the-card', this.card.id)
         }
     },
