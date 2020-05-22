@@ -1,8 +1,8 @@
 <template>
     <div class="homeMain">
         <CardStack v-bind:cards="cards" class="card"></CardStack>
-        <div class="add-card">
-            <p>
+        <div class="add-card" @click="addCard()">
+            <p >
                ADD A NEW CARD 
             </p>            
         </div>
@@ -17,7 +17,13 @@ export default {
         CardStack
     }
      ,
-     props: ["cards"]
+     props: ["cards"],
+     methods :{
+        addCard(){
+            
+            this.$emit('add-the-card', 2)
+        }
+     }
         
     
 }

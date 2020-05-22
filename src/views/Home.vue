@@ -3,7 +3,8 @@
     <HomeMain 
             v-bind:cards="cards" 
             v-if="page===1"
-            v-bind:page="page"></HomeMain>
+            v-bind:page="page"
+            v-on:add-the-card="newCard"></HomeMain>
     <AddCard  
             v-bind:cards="cards" 
             v-if="page===2"
@@ -26,7 +27,7 @@ export default {
    methods:{
      addCard : function(card){
        
-       console.log("ja ja hej på dig!!!" + this.cards.length)
+       
        let max = 0;
        if(this.cards.length!=0){
           max = this.cards.reduce(function(prev, current) {
@@ -34,10 +35,13 @@ export default {
                             });
        }
        
-                            card.uniqId= max + 1; 
-     this.cards.push(card);  
+      card.uniqId= max + 1; 
+      this.cards.push(card);  
        this.page =1;
        
+     },
+     newCard(){
+       this.page=2;
      }
    },
   data () {
